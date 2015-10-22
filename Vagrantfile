@@ -49,6 +49,7 @@ Vagrant.configure(2) do |config|
   
     # Customize the amount of memory on the VM:
     vb.memory = "2048"
+    vb.name = "angular-frontend"
   end
   #
   # View the documentation for the provider you are using for more
@@ -67,7 +68,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update && sudo apt-get dist-upgrade -y
     sudo apt-get install vim git git-core g++ -y
-    cd /opt && sudo wget https://nodejs.org/dist/v4.2.1/node-v4.2.1-linux-x64.tar.gz && sudo tar -xvzf node-v4.2.1-linux-x64.tar.gz -C node
+    cd /opt && sudo wget https://nodejs.org/dist/v4.2.1/node-v4.2.1-linux-x64.tar.gz && sudo tar -xvzf node-v4.2.1-linux-x64.tar.gz && mv node-v4.2.1-linux-x64 node
     sudo ln -s /opt/node/bin/node /usr/bin/node
     sudo ln -s /opt/node/bin/npm /usr/bin/npm
     sudo npm install -g bower
@@ -75,6 +76,5 @@ Vagrant.configure(2) do |config|
     cd /study/frontend/angular-phonecat
     npm install
     git checkout -f step-0
-    nohup npm start &
   SHELL
 end
